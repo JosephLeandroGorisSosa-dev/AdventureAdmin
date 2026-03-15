@@ -27,6 +27,7 @@ static class Program
 
     private static void ConfigureServices(ServiceCollection services)
     {
+
         var connectionString = ConfigurationManager
             .ConnectionStrings["AdventureWorks"].ConnectionString;
 
