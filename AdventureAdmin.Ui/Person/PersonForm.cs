@@ -31,7 +31,10 @@ public partial class PersonForm : Form
 
     private void CargarDatos(AdventureAdmin.Data.Models.Person p)
     {
-        int idx = Array.IndexOf(PersonTypeCodes, p.PersonType?.ToUpper());
+        int idx = Array.FindIndex(
+            PersonTypeCodes,
+            code => string.Equals(code, p.PersonType?.Trim(), StringComparison.OrdinalIgnoreCase));
+
         cmbPersonType.SelectedIndex = idx >= 0 ? idx : 0;
 
         txtTitle.Text = p.Title ?? string.Empty;
@@ -107,20 +110,11 @@ public partial class PersonForm : Form
 
     private async Task Insertar()
     {
-        var context = Program.ServiceProvider.GetRequiredService<AdventureWorksContext>();
+        var businessEntityId = await _service.CrearBusinessEntity();
 
-        var entity = new BusinessEntity
+        var p = new Data.Models.Person
         {
-            Rowguid = Guid.NewGuid(),
-            ModifiedDate = DateTime.Now
-        };
-
-        context.BusinessEntities.Add(entity);
-        await context.SaveChangesAsync();
-
-        var p = new AdventureAdmin.Data.Models.Person
-        {
-            BusinessEntityId = entity.BusinessEntityId,
+            BusinessEntityId = businessEntityId,
             Rowguid = Guid.NewGuid(),
             ModifiedDate = DateTime.Now
         };
@@ -132,16 +126,20 @@ public partial class PersonForm : Form
     private async Task Actualizar()
     {
         var p = await _service.Buscar(_person!.BusinessEntityId);
+
         if (p == null) return;
 
         AplicarCampos(p);
         p.ModifiedDate = DateTime.Now;
 
-        await _service.Guardar(p); // si agrego Update, cambio aquí
+        await _service.Actualizar(p);
     }
 
     private void AplicarCampos(AdventureAdmin.Data.Models.Person p)
     {
+        if (cmbPersonType.SelectedIndex < 0 || cmbPersonType.SelectedIndex >= PersonTypeCodes.Length)
+            throw new InvalidOperationException("Tipo de persona inválido.");
+
         p.PersonType = PersonTypeCodes[cmbPersonType.SelectedIndex];
         p.Title = NullIfEmpty(txtTitle.Text);
         p.FirstName = txtFirstName.Text.Trim();
