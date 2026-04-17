@@ -51,7 +51,7 @@
             button1.Font = new Font("Segoe UI", 9F, FontStyle.Regular, GraphicsUnit.Point, 0);
             button1.Location = new Point(12, 48);
             button1.Name = "button1";
-            button1.Size = new Size(106, 30);
+            button1.Size = new Size(117, 30);
             button1.TabIndex = 1;
             button1.Text = "✚ Nuevo";
             button1.UseVisualStyleBackColor = false;
@@ -60,9 +60,9 @@
             // btnModificar
             // 
             btnModificar.BackColor = SystemColors.Control;
-            btnModificar.Location = new Point(124, 48);
+            btnModificar.Location = new Point(135, 48);
             btnModificar.Name = "btnModificar";
-            btnModificar.Size = new Size(105, 30);
+            btnModificar.Size = new Size(117, 30);
             btnModificar.TabIndex = 2;
             btnModificar.Text = "✏️ Modificar";
             btnModificar.UseVisualStyleBackColor = false;
@@ -81,9 +81,9 @@
             // btnEliminar
             // 
             btnEliminar.BackColor = SystemColors.Control;
-            btnEliminar.Location = new Point(235, 48);
+            btnEliminar.Location = new Point(258, 48);
             btnEliminar.Name = "btnEliminar";
-            btnEliminar.Size = new Size(105, 30);
+            btnEliminar.Size = new Size(117, 30);
             btnEliminar.TabIndex = 4;
             btnEliminar.Text = "🗑️ Eliminar";
             btnEliminar.UseVisualStyleBackColor = false;
