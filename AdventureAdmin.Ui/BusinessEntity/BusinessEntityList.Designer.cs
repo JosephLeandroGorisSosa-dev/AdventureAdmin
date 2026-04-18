@@ -30,6 +30,8 @@
         {
             Guardar = new Button();
             dataGridView1 = new DataGridView();
+            btnModificar = new Button();
+            btnEliminar = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -55,11 +57,33 @@
             dataGridView1.TabIndex = 1;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick_1;
             // 
+            // btnModificar
+            // 
+            btnModificar.Location = new Point(142, 12);
+            btnModificar.Name = "btnModificar";
+            btnModificar.Size = new Size(112, 34);
+            btnModificar.TabIndex = 2;
+            btnModificar.Text = "Modificar";
+            btnModificar.UseVisualStyleBackColor = true;
+            btnModificar.Click += btnModificar_Click;
+            // 
+            // btnEliminar
+            // 
+            btnEliminar.Location = new Point(280, 12);
+            btnEliminar.Name = "btnEliminar";
+            btnEliminar.Size = new Size(112, 34);
+            btnEliminar.TabIndex = 3;
+            btnEliminar.Text = "Eliminar";
+            btnEliminar.UseVisualStyleBackColor = true;
+            btnEliminar.Click += btnEliminar_Click;
+            // 
             // BusinessEntityList
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 492);
+            Controls.Add(btnEliminar);
+            Controls.Add(btnModificar);
             Controls.Add(dataGridView1);
             Controls.Add(Guardar);
             Name = "BusinessEntityList";
@@ -71,7 +95,7 @@
 
         #endregion
 
-        private Button button1;
+        private Button btnEliminar;
         private DataGridView dataGridView1;
     private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -79,5 +103,7 @@
         }
 
         private Button Guardar;
+        private Button Btn;
+        private Button btnModificar;
     } 
 }
